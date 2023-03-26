@@ -1,0 +1,28 @@
+import psycopg2 as psycopg2
+
+
+try:
+    con=psycopg2.connect(
+        database='Glovo',
+        user= 'postgres',
+        port= '5432',
+        password='itoip',
+        host='localhost'
+    )
+
+    cursor=con.cursor()
+
+    com='''CREATE TABLE DOSTAVLJAC (
+ID_DOSTAVLJACA SERIAL PRIMARY KEY NOT NULL,
+IME_PREZIME VARCHAR(30) NOT NULL
+);
+'''
+    cursor.execute(com)
+    print("Table created succesfully")
+
+except(Exception,psycopg2.Error) as e:
+    print("Error:",e)
+
+finally:
+     cursor.close()
+     con.close()
